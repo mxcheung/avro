@@ -26,6 +26,16 @@ https://gist.github.com/sebsto/19b99f1fa1f32cae5d00
 
 https://dzone.com/articles/installing-and-running-kafka-on-an-aws-instance
 
+wget https://dlcdn.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz
+wget http://mirror.fibergrid.in/apache/kafka/0.10.2.0/kafka_2.12-0.10.2.0.tgz
+tar -xzf kafka_2.13-3.0.0.tgz
+cd kafka_2.13-3.0.0
+nohup bin/zookeeper-server-start.sh config/zookeeper.properties > ~/zookeeper-logs &
+nohup bin/kafka-server-start.sh config/server.properties > ~/kafka-logs &
+bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+bin/kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092
+
+
 # install confluent platform
 https://www.baeldung.com/kafka-connectors-guide
 
